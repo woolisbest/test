@@ -1,35 +1,78 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HTMLを取得</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>プロキシサイト</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            padding: 10px 15px;
+            font-size: 16px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #777;
+        }
+    </style>
 </head>
-<body class="bg-gray-900 text-white min-h-screen flex items-center justify-center transition-colors duration-300">
-  <div class="w-full max-w-md p-8 bg-gray-800 rounded-xl shadow-xl">
-    <div class="text-center">
-      <h1 class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600 mb-6">HTMLを取得</h1>
-      <p class="text-gray-400 mb-8">ウェブサイトのhtmlを取得して、確認できます。</p>
-      <input type="text" id="searchBar" placeholder="URLを入力" class="w-full p-4 bg-gray-700 text-white border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 mb-6 placeholder-gray-400 transition duration-300 hover:bg-gray-600">
-      <button id="redirectButton" class="w-full py-3 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold rounded-lg shadow-md hover:from-blue-600 hover:to-indigo-700 transition duration-200 ease-in-out">
-        URLを取得
-      </button>
-      <p class="mt-6 text-sm text-gray-400">サイトによっては、UIが壊れることがあります。また、X-Frame-OptionsヘッダーやCSP設定で取得できない場合があります。</p>
+<body>
+    <div class="container">
+        <header>
+            <h1>プロキシサイト</h1>
+            <p>ウェブサイトを匿名で閲覧できます。</p>
+        </header>
+        
+        <form action="proxy_handler.php" method="GET">
+            <label for="url">閲覧したいウェブサイトのURLを入力:</label><br>
+            <input type="text" id="url" name="url" placeholder="https://example.com" required><br><br>
+            <input type="submit" value="プロキシを使って開く">
+        </form>
+        
+        <footer>
+            <p>&copy; 2025 プロキシサイト | All rights reserved.</p>
+        </footer>
     </div>
-  </div>
-
-  <script>
-    document.getElementById('redirectButton').addEventListener('click', () => {
-      const url = document.getElementById('searchBar').value.trim(); // サーチバーからURLを取得
-      if (!url) {
-        alert('URLを入力してください');
-        return;
-      }
-      const replacedUrl = url.replace(/\./g, '.wakame02.');
-      const redirectUrl = `/tools/html/gethtml/${encodeURIComponent(replacedUrl)}`;
-      window.location.href = redirectUrl;
-    });
-  </script>
 </body>
 </html>
